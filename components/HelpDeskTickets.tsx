@@ -41,7 +41,7 @@ export default function HelpDeskTickets() {
                             setSelectedTicket(ticket)
                             ticketModal.openModal()
                         }
-                        return <TicketCard key={ticket.name + i} {...ticket} onPress={handlePress} />
+                        return <Layout key={ticket.name + i} style={{ paddingBottom: 16 }}><TicketCard  {...ticket} onPress={handlePress} /></Layout>
                     })}
                 </Layout>
                 {!!selectedTicket &&

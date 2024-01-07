@@ -4,14 +4,15 @@ import React from 'react'
 
 interface IRouteButton {
     route: string;
-    children: string
+    children: string;
+    status?: 'primary' | 'danger'
 }
 
-export default function RouteButton({ children, route }: IRouteButton) {
+export default function RouteButton({ children, route, status = 'primary' }: IRouteButton) {
 
     const handleGoToRoute = () => {
         router.push(route);
     };
 
-    return <Button onPress={handleGoToRoute}>{children}</Button>
+    return <Button status={status} onPress={handleGoToRoute}>{children}</Button>
 }

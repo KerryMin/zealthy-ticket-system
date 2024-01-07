@@ -72,7 +72,7 @@ export default function HelpDeskForm() {
 
     return (
         <Layout style={{ opacity: isLoading ? 0.6 : 1, padding: 16, width: '90%', maxWidth: 400 }}>
-            <Text category='h1' style={{ color: '#2E3A59', marginBottom: 20 }}>
+            <Text category='h1' style={{ marginBottom: 20 }}>
                 Help Desk
             </Text>
             <Card disabled={true}>
@@ -109,10 +109,12 @@ export default function HelpDeskForm() {
                         </React.Fragment>
                     )
                 })}
-                <Button disabled={isLoading} onPress={handleSubmit}>
-                    Submit
-                </Button>
-                <RouteButton route={routes.supportTicketList}>See support tickets</RouteButton>
+                <Layout style={{ marginTop: 20 }}>
+                    <Button style={{ marginBottom: 16 }} status='success' disabled={isLoading} onPress={handleSubmit}>
+                        Submit
+                    </Button>
+                    <RouteButton status='danger' route={routes.supportTicketList}>See support tickets</RouteButton>
+                </Layout>
             </Card>
         </Layout>
     );

@@ -12,14 +12,14 @@ export default function Welcome() {
     return (
         <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Layout style={{ padding: 16, width: '90%', maxWidth: 390 }}>
-                <Text category='h1' style={{ color: '#2E3A59', textAlign: 'center', marginBottom: 20 }}>
+                <Text category='h1' style={{ textAlign: 'center', marginBottom: 20 }}>
                     Welcome to Zealthy's Help Desk!
                 </Text>
-                <Button style={{ marginVertical: 8 }} onPress={handleGoToRoute(routes.supportTicketForm)}>
+                <Button status='primary' style={{ marginVertical: 8 }} onPress={handleGoToRoute(routes.supportTicketForm)}>
                     Submit support ticket
                 </Button>
 
-                <Button style={{ marginVertical: 8 }} onPress={handleGoToRoute(routes.supportTicketList)}>
+                <Button status='danger' style={{ marginVertical: 8 }} onPress={handleGoToRoute(routes.supportTicketList)}>
                     See list of support tickets
                 </Button>
             </Layout>
