@@ -2,6 +2,7 @@
   "expo": {
     "name": "zealthy-ticket-system",
     "slug": "zealthy-ticket-system",
+    "scheme": "your-app-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -24,7 +23,13 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "build": { "babel": { "include": ["@ui-kitten/components"] } }
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "baseConvexDevUrl": "https://notable-narwhal-524.convex.cloud"
     }
   }
 }
