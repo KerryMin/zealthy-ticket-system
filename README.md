@@ -26,3 +26,4 @@ The application includes several custom implementations to enhance the developme
 ---
 
 Hosted on Vercel:
+https://zealthy-ticket-system-f5epjvu0x-kerrymin.vercel.app/
