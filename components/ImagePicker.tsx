@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Button, Image } from 'react-native';
+import { ActivityIndicator, Button, Image, Platform } from 'react-native';
 import * as ExpoImagePicker from 'expo-image-picker';
 import { Layout } from '@ui-kitten/components';
 
@@ -10,20 +10,22 @@ interface IImagePicker {
 export default function ImagePicker({ image, onChange }: IImagePicker) {
     const [isLoading, setIsLoading] = useState(false)
     const pickImage = async () => {
-        setIsLoading(true)
-
-        let result = await ExpoImagePicker.launchImageLibraryAsync({
-            mediaTypes: ExpoImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        setIsLoading(false)
-
-        if (!result.canceled) {
-            onChange(result.assets[0].uri)
+        setIsLoading(Platform.OS !== 'web')
+        try {
+            let result = await ExpoImagePicker.launchImageLibraryAsync({
+                mediaTypes: ExpoImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+            if (!result.canceled) {
+                onChange(result.assets[0].uri)
+            }
         }
+        catch (e) {
+            console.log('log: e', e)
+        }
+        setIsLoading(false)
     };
 
     if (isLoading) {

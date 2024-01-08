@@ -15,7 +15,7 @@ interface TicketModalProps {
 
 export default function TicketModal({ isOpen, onClose, ticketDetails }: TicketModalProps) {
     const initialValues = { response: ticketDetails.response || '', status: ticketDetails.status }
-    const { values, handleChange, handleSubmit } = useForm({ initialValues, onSubmit, noReset: true })
+    const { values, handleChange, handleSubmit, resetForm } = useForm({ initialValues, onSubmit, noReset: true })
     const updateTicket = useMutation(api.tickets.updateTicket);
     const { successToast, errorToast } = useToaster()
     const [isLoading, setIsLoading] = useState(false)
@@ -38,15 +38,20 @@ export default function TicketModal({ isOpen, onClose, ticketDetails }: TicketMo
         setSelectedIndex(index);
         handleChange('status', Object.values(STATUS)[index.row]);
     };
+
     const LoadingIndicator = (props: any) => (
         <Layout style={[props.style, { justifyContent: 'center', alignItems: 'center' }]}>
             <ActivityIndicator size='small' color='#FFF' />
         </Layout>
     );
 
+    function handleBackDropClick() {
+        resetForm()
+        onClose()
+    }
     return (
         <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Modal visible={isOpen} backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', }} onBackdropPress={onClose}>
+            <Modal visible={isOpen} backdropStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', width: '100%', }} onBackdropPress={handleBackDropClick}>
                 <Layout style={{ margin: 2, padding: 16, minWidth: 300, maxWidth: 400 }}>
                     <Text category='h6'>Help Desk Response</Text>
                     <Layout style={{ marginVertical: 8 }}>
@@ -57,7 +62,7 @@ export default function TicketModal({ isOpen, onClose, ticketDetails }: TicketMo
                         <Text style={{ marginBottom: 20 }}>Description: {ticketDetails.description}</Text>
 
                         <Input
-                            value={values.response || initialValues.response}
+                            value={values.response}
                             onChangeText={(text) => handleChange('response', text)}
                             placeholder="Type your response"
                             style={{ marginBottom: 20 }}

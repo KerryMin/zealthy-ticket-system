@@ -59,5 +59,13 @@ export const useForm = <T extends object>(options: {
     validate();
   }, [values]);
 
-  return { values, handleChange, errors, handleSubmit, submitCount, isInvalid };
+  return {
+    values,
+    handleChange,
+    errors,
+    handleSubmit,
+    submitCount,
+    isInvalid,
+    resetForm,
+  };
 };
