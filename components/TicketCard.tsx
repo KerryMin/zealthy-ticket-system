@@ -24,7 +24,7 @@ export default function TicketCard({ date, description, name, status, email, ima
                     borderColor: '#CBD5E0',
                     borderRadius: 4,
                     overflow: 'hidden',
-                    minHeight: 80,
+                    height: 80,
                     paddingTop: 4,
                     paddingHorizontal: 8,
                     position: 'relative',
