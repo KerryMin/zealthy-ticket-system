@@ -34,7 +34,8 @@ export default function ImagePicker({ image, onChange }: IImagePicker) {
     return (
         <>
             <Button title={!image ? "Pick an image from camera roll" : "Replace image"} onPress={pickImage} />
-            <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+            <Layout style={{ marginVertical: !image ? 0 : 60, flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                 {!!image && <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />}
             </Layout>
         </>
